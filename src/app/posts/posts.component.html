@@ -1,1 +1,18 @@
-<p>post works</p>
+<html>
+  <head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+  </head>
+  <body>
+      <input   
+      (keyup.enter)="createPost(title)"  
+      type="text" class="form-control">
+    <ul class="list-group">  
+      <li  
+        *ngFor="let post of posts"   
+        class="list-group-item">  
+        {{ post.title }}  
+      </li>  
+    </ul> 
+  </body>
+</html>
+ 
