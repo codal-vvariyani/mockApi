@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { DialogService } from '../shared/dialog.service';
+import { MatDialog } from '@angular/material';
 
 
 export interface postResponse {
@@ -22,12 +23,13 @@ export class PostsComponent implements OnInit {
   private url = 'https://jsonplaceholder.typicode.com/posts';
 
   constructor(private http: HttpClient,
+    private dialog: MatDialog,
     private dialogService: DialogService) {
    }
 
 ////////////////CREATE POST///////////////////////
    createPost(input: HTMLInputElement) {
-     let post = {title: input.value}; 
+     let post = {title: input.value};
      input.value = '';
       
      this.http.post<any>(this.url, JSON.stringify(post)).subscribe(response => {  
@@ -56,12 +58,19 @@ getPost()
 
 /////////////DELETE POST//////////////////////////
 deletePost(post) {
-  this.dialogService.openConfirmDialog();  
-  this.http.delete(this.url + '/' + post.id)  
+  this.dialogService.openConfirmDialog('Are you sure you want to delete this record?')
+  .afterClosed().subscribe(response =>{
+    console.log(response);
+    
+    if(response){
+      this.http.delete(this.url + '/' + post.id)  
     .subscribe(response => {  
       let index = this.posts.indexOf(post);  
       this.posts.splice(index, 1);  
     });  
+    }
+  });
+  
 }  
 
   ngOnInit() {
