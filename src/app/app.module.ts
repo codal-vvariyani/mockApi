@@ -10,13 +10,15 @@ import { MatDialogModule, MatIconModule } from '@angular/material';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UpdateComponent } from './update/update.component';
+import { ViewComponent } from './view/view.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PostsComponent,
     ConfirmDialogComponent,
-    UpdateComponent
+    UpdateComponent,
+    ViewComponent
   ],
   imports: [
     BrowserModule,

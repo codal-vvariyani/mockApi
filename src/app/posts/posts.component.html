@@ -12,8 +12,10 @@
       <li *ngFor="let post of posts"  class="list-group-item">  
         
         <button (click)="updatePost(post)"  class="btn btn-primary btn-sm" routerLink="/update/{{post.id}}">Update</button> 
-        
-        {{post.id}} {{ post.title }}  
+        <a href="view/{{post.id}}" class="list-group-item-action">
+            {{post.id}} {{ post.title }}
+          </a> 
+          
       
         <button (click)="deletePost(post)"  class="btn btn-danger btn-sm float-right">Delete</button> 
       </li>  

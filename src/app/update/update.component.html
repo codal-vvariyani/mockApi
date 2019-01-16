@@ -1,13 +1,13 @@
 <div class="container center_div">
-    <form action="/action_page.php">
+    <form action="/action_page.php" method="PUT">
       <div class="form-group">
         <label for="title">Title:</label>
-        <input type="text" class="form-control" id="textBox_title">
+        <input type="text" name ="title"class="form-control" id="textBox_title" value="{{posts?.title}}" [(ngModel)] = "strTitle">
       </div>
       <div class="form-group" >
         <label for="body">Body:</label>
-        <input type="text" class="form-control" id="textBox_body">
+        <input type="text" name="body"class="form-control" id="textBox_body" value="{{posts?.body}}" [(ngModel)] = "strBody">
       </div>
-      <button type="submit" class="btn btn-primary">Update</button>
+      <button type="submit" class="btn btn-primary" (click)="updateData()">Update</button>
     </form>
 </div>
