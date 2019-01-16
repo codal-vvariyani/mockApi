@@ -1,12 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
-export interface postResponse {
-  body?: string;
-  id?: Number;
-  title?: string;
-  userId?: Number;
-}
+import { postResponse } from '../shared/postResponse';
 
 @Component({
   selector: 'app-view',
