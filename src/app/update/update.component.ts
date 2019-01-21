@@ -24,6 +24,7 @@ export class UpdateComponent implements OnInit {
     this.getDataToUpdate();
   }
 
+  ////////////FETCH DATA TO BE UPDATED////////////////
   getDataToUpdate(){
     
     console.log(this.id);
@@ -35,6 +36,7 @@ export class UpdateComponent implements OnInit {
     }); 
   }
 
+  ///////////UPDATE POST///////////////
   updateData(){
     let post = {title: this.strTitle,
     body: this.strBody};

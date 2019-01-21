@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -11,6 +13,7 @@ import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.componen
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UpdateComponent } from './update/update.component';
 import { ViewComponent } from './view/view.component';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [
@@ -28,7 +31,9 @@ import { ViewComponent } from './view/view.component';
     HttpClientModule,
     MatDialogModule,
     MatIconModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireDatabaseModule
   ],
   providers: [],
   bootstrap: [AppComponent],

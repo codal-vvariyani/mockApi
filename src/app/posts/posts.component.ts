@@ -47,14 +47,7 @@ getPost()
     this.posts = response;
     });
 }
-  
-//////////////UPDATE POST/////////////////////////
-  updatePost(id) {  
-    this.http.patch(this.url + '/' + id, JSON.stringify({ isRead: true }))
-      .subscribe(response => {
-        console.log(response);
-      });
-  }  
+
 
 /////////////DELETE POST//////////////////////////
 deletePost(post) {
