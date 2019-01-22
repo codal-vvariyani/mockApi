@@ -1,9 +1,9 @@
-<div class="form-group">
-    <button class="btn-primary" type="submit" routerLink="/posts">Posts</button>
-    <button class="btn-primary" type="submit" routerLink="/tdf">Tdf</button>
-    <button class="btn-primary" type="submit" routerLink="/rf">Rf</button>    
-</div>
-<div class="form-group">
-    <router-outlet></router-outlet>
-</div>
-
+<app-header></app-header>
+        <!-----------------------CONTENT---------------------------->
+        <main class="container">
+            <div class="jumbotron">
+                <router-outlet></router-outlet>
+            </div>
+        </main>
+        <!-----------------------CONTENT---------------------------->
+<app-footer></app-footer>

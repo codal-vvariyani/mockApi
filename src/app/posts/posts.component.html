@@ -2,24 +2,20 @@
   <head>
   </head>
   <body>
-      <input
-      #title
-      (keyup.enter)="createPost(title)"  
-      type="text" class="form-control"
-      placeholder="Enter your text here">
-      
-    <ul class="list-group">  
-      <li *ngFor="let post of posts"  class="list-group-item">  
+      <div class="form-group">
+          <input #title (keyup.enter)="createPost(title)" type="text" class="form-control" 
+          placeholder="Enter your text here">
         
-        <button class="btn btn-primary btn-sm" routerLink="/update/{{post.id}}">Update</button> 
-        <a routerLink="view/{{post.id}}" class="list-group-item-action">
-            {{post.id}} {{ post.title }}
-          </a> 
-          
-      
-        <button (click)="deletePost(post)"  class="btn btn-danger btn-sm float-right">Delete</button> 
-      </li>  
-    </ul> 
+        <ul class="list-group">  
+          <li *ngFor="let post of posts"  class="list-group-item">  
+            <button class="btn btn-primary btn-sm" routerLink="/update/{{post.id}}">Update</button> 
+            <a routerLink="/view/{{post.id}}" class="list-group-item-action">
+                {{post.id}} {{ post.title }}
+            </a> 
+              <button (click)="deletePost(post)"  class="btn btn-danger btn-sm float-right">Delete</button> 
+          </li>  
+        </ul>
+      </div> 
   </body>
 </html>
 <router-outlet></router-outlet>
