@@ -1,10 +1,10 @@
 <div class="container-fluid">
-<h2>Registration Form</h2>
+  <h2>Registration Form</h2>
 
   <form [formGroup]="registrationForm">  
     <div class="form-group">
       <label>Username</label>
-      <input formControlName="userName" type="text" class="form-control" [class.is-invalid]="userName.invalid
+      <input BlockCopyPaste formControlName="userName" type="text" class="form-control" [class.is-invalid]="userName.invalid
        && userName.touched">
        <div *ngIf="userName.invalid && userName.touched">
         <small class="text-danger" *ngIf="userName.errors?.required">Username is required</small>
@@ -24,29 +24,32 @@
 
     <div class="form-group">
       <label>Password</label>
-      <input formControlName="password" type="password" class="form-control">
+      <input BlockCopyPaste formControlName="password" type="password" class="form-control" [class.is-invalid]="password.invalid
+      && password.touched">
+      <small class="text-danger" *ngIf="password.errors?.pattern">Password must contain 1 uppercase, 1 lowercase, 1 digit and 1 special character.</small>
+      <small class="text-danger" *ngIf="password.errors?.minlength">Minimum length should be 6.</small>
     </div>
 
     <div class="form-group">
       <label>Confirm password</label>
-      <input [class.is-invalid]="registrationForm.errors?.misMatch" formControlName="confirmPassword" type="password" class="form-control">
+      <input BlockCopyPaste [class.is-invalid]="registrationForm.errors?.misMatch" formControlName="confirmPassword" type="password" class="form-control">
       <small class="text-danger" *ngIf="registrationForm.errors?.misMatch">Passwords do not match</small>
     </div>
 
     <div formGroupName="address">
       <div class="form-group">
         <label>City</label>
-        <input type="text" class="form-control">
+        <input google-place BlockCopyPaste type="text" class="form-control" placeholder="Enter city">
       </div>
 
       <div class="form-group">
         <label>State</label>
-        <input type="text" class="form-control">
+        <input BlockCopyPaste type="text" class="form-control">
       </div>
 
       <div class="form-group">
         <label>Postal Code</label>
-        <input type="text" class="form-control">
+        <input BlockCopyPaste type="text" class="form-control">
       </div>
     </div>
 

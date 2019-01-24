@@ -21,13 +21,4 @@ export class AppComponent {
       this.topicHasError=false;
     }
   }
-/////////////////////////NUMBER ONLY FOR PHONE/////////////////////////////////
-  numberOnly(event): boolean {
-    const charCode = (event.which) ? event.which : event.keyCode;
-    if (charCode > 31 && (charCode < 48 || charCode > 57) && charCode != 43) {
-      return false;
-    }
-    return true;
-
-  }
 }

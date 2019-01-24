@@ -4,13 +4,15 @@ import { AppComponent } from './app/app.component';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { RfRoutingModule } from './rf-routing.module';
-
+import { SharedModuleModule } from '../shared-module/shared-module.module';
+ 
 @NgModule({
   declarations: [AppComponent],
   imports: [
     CommonModule,
     RfRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModuleModule
   ]
 })
 export class RfModule { }
