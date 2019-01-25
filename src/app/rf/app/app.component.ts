@@ -49,4 +49,10 @@ export class AppComponent {
       postalCode:['']
     })
   },{validator: PasswordValidator});
+
+
+
+  getCityData(data) {
+    console.log("----- city data : ", data);
+  }
 }

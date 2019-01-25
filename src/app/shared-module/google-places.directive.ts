@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import { Directive, ElementRef, OnInit, Output, EventEmitter } from '@angular/core';
+=======
+import { Directive, ElementRef, OnInit, EventEmitter, Output } from '@angular/core';
+>>>>>>> 4f95f21183be5e2344bb7bc1d6aa3a6e51010682
 //const google = require('@types/googlemaps');
 
 @Directive({
@@ -24,7 +28,7 @@ export class GooglePlacesDirective implements OnInit {
   }
 
   ngOnInit() {
-    this.getAutoComplete();
+    //this.getAutoComplete();
   }
 
   getAutoComplete()
