@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { postResponse } from '../shared/postResponse';
 
 @Component({
@@ -10,7 +10,7 @@ import { postResponse } from '../shared/postResponse';
 })
 
 export class UpdateComponent implements OnInit {
-  private url = 'https://jsonplaceholder.typicode.com/posts';
+  private url = 'http://localhost:3000/posts';
   posts:postResponse[];
   strTitle: String;
   strBody: String;
@@ -43,7 +43,7 @@ export class UpdateComponent implements OnInit {
       console.log("Title:"+this.strTitle);
       console.log("Body:"+this.strBody);
 
-    this.http.put(this.url+'/'+this.id, JSON.stringify(post))
+    this.http.patch(this.url+'/'+this.id, post)
       .subscribe(response => {
         console.log(response);
       });

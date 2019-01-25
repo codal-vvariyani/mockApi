@@ -3,20 +3,27 @@
 
   <form #userForm="ngForm">
     <div class="form-group">
-      <label>Name</label>
-      <input BlockCopyPaste type="text" required #name="ngModel" name="name" [class.is-invalid]="name.invalid && name.touched" 
-      class="form-control" [(ngModel)]="userModel.name">
-      <small class="text-danger" [class.d-none]="name.valid || name.untouched">Name is required</small>
+      <label>First Name</label>
+      <input BlockCopyPaste type="text" required #fname="ngModel" name="fname" [class.is-invalid]="fname.invalid && fname.touched" 
+      class="form-control" [(ngModel)]="userModel.firstName">
+      <small class="text-danger" [class.d-none]="fname.valid || fname.untouched">First name is required</small>
     </div>
 
+    <div class="form-group">
+        <label>Last Name</label>
+        <input BlockCopyPaste type="text" required #lname="ngModel" name="lname" [class.is-invalid]="lname.invalid && lname.touched"
+        class="form-control" [(ngModel)]="userModel.lastName">
+        <small class="text-danger" [class.d-none]="lname.valid || lname.untouched">Last name is required</small>
+    </div>
+  
     <div class="form-group">
         <label>Email</label>
         <input BlockCopyPaste type="email" required #email="ngModel"
         [class.is-invalid]="email.invalid && email.touched" name="email" class="form-control" ngModel email="true" [(ngModel)]="userModel.email">
         <div *ngIf="email.errors && (email.invalid || email.touched)">
             <small class="text-danger" *ngIf="email.errors.required && email.touched">Email is required</small>
-            <small class="text-danger" *ngIf="email.errors.email && email.touched   ">Enter valid email address</small>
-         </div>
+            <small class="text-danger" *ngIf="email.errors.email && email.touched">Enter valid email address</small>
+        </div>
     </div>
     
     <div class="form-group">
@@ -30,30 +37,42 @@
     </div>
 
     <div class="form-group">
+        <select (change)="getStates(topic.value)" (blur)="validateTopic(value)" (change)="validateTopic(topic.value)" #topic="ngModel"name="countries" 
+        [class.is-invalid]="topicHasError && topic.touched" class="custom-select" [(ngModel)]="userModel.topic">
+          <option value="default">Country</option>
+          <option *ngFor="let country of countries">{{country.name}}</option>
+        </select>
+        <small class="text-danger" [class.d-none]="!topicHasError || topic.untouched">Please select a country</small>
+      </div>
+
+      <!-- <div class="form-group">
         <select (blur)="validateTopic(topic.value)" (change)="validateTopic(topic.value)" #topic="ngModel"name="topics" 
         [class.is-invalid]="topicHasError && topic.touched" class="custom-select" [(ngModel)]="userModel.topic">
-          <option value="default">I am interested in</option>
-          <option *ngFor="let topic  of topics">{{topic}}</option>
+          <option value="default">State</option>
+          <option *ngFor="let country  of countries">{{country}}</option>
         </select>
         <small class="text-danger" [class.d-none]="!topicHasError || topic.untouched">Please select a topic</small>
       </div>
 
+      <div class="form-group">
+        <select (blur)="validateTopic(topic.value)" (change)="validateTopic(topic.value)" #topic="ngModel"name="topics" 
+        [class.is-invalid]="topicHasError && topic.touched" class="custom-select" [(ngModel)]="userModel.topic">
+          <option value="default">City</option>
+          <option *ngFor="let topic  of topics">{{topic}}</option>
+        </select>
+        <small class="text-danger" [class.d-none]="!topicHasError || topic.untouched">Please select a topic</small>
+      </div> -->
+    
       <div class="mb-3">
-          <label>Time Preference</label>
+          <label>Gender</label>
           <div class="form-check">
-              <input class="form-check-input" type="radio" name="timePreference" value="morning" [(ngModel)]="userModel.timePreference">
-              <label class="form-check-label">Morning (9AM - 12PM)</label>
+              <input class="form-check-input" type="radio" name="gender" value="Male" [(ngModel)]="userModel.gender">
+              <label class="form-check-label">Male</label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="timePreference" value="evening" [(ngModel)]="userModel.timePreference">
-                <label class="form-check-label">Evening (5PM - 8PM)</label>
+                <input class="form-check-input" type="radio" name="gender" value="Female" [(ngModel)]="userModel.gender">
+                <label class="form-check-label">Female</label>
             </div>
-      </div>
-      
-
-      <div class="form-check mb-3">
-          <input class="form-check-input" name="subscribe" type="checkbox" [(ngModel)]="userModel.subscribe">
-          <label class="form-check-label">Send me promotional offers</label>
       </div>
 
       <button [disabled]="userForm.form.invalid || topicHasError" class="btn btn-primary" type="submit">Submit form</button>

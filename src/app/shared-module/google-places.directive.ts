@@ -1,14 +1,17 @@
-import { Directive, ElementRef, OnInit } from '@angular/core';
+import { Directive, ElementRef, OnInit, Output, EventEmitter } from '@angular/core';
 //const google = require('@types/googlemaps');
 
 @Directive({
   selector: '[google-place]'
 })
 export class GooglePlacesDirective implements OnInit {
+
+  @Output() emiter = new EventEmitter();
+
   private element: HTMLInputElement;
-  private city: string;
-  private state: string;
-  private country: string;
+  city: string = "Ahmedabad";
+  state: string = "Gujarat";
+  country: string = "India";
 
   options = {
     types: ['(cities)']
@@ -26,6 +29,8 @@ export class GooglePlacesDirective implements OnInit {
 
   getAutoComplete()
   {
+    console.log("Directive Called " + this.city);
+    this.emiter.emit({city: this.city, state:this.state, country:this.country});
     const autocomplete = new google.maps.places.Autocomplete(this.element, this.options);
     google.maps.event.addListener(autocomplete, 'place_changed', function () {
       var result = autocomplete.getPlace();
@@ -48,8 +53,6 @@ export class GooglePlacesDirective implements OnInit {
         }
       }
       console.log("City:"+this.city+" State:"+this.state+" Country:"+this.country);
-      const data = this.city+this.state+this.country;
-      return data;
   });
   }
 }

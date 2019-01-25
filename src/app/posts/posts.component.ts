@@ -20,7 +20,7 @@ export interface postResponse {
 export class PostsComponent implements OnInit {
   posts: postResponse[];
   
-  private url = 'https://jsonplaceholder.typicode.com/posts';
+  private url = 'http://localhost:3000/posts';
 
   constructor(private http: HttpClient,
     private dialog: MatDialog,
@@ -32,7 +32,7 @@ export class PostsComponent implements OnInit {
      let post = {title: input.value};
      input.value = '';
       
-     this.http.post<any>(this.url, JSON.stringify(post)).subscribe(response => {  
+     this.http.post<any>(this.url, post).subscribe(response => {  
       post['id'] = response.id;
       this.posts.splice(0, 0, post);  
       console.log(response);

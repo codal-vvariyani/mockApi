@@ -12,7 +12,7 @@ const routes: Routes = [
   { path: 'posts', component: PostsComponent, }, 
   { path: 'home', component: HomeComponent, },
   { path: 'update/:id', component: UpdateComponent},
-  { path: 'view/:id', component: ViewComponent }
+  { path: 'view/:id', component: ViewComponent },
 ];
 
 @NgModule({

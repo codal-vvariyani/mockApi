@@ -8,6 +8,10 @@ import { PasswordValidator } from 'src/app/shared/password-validator';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+ private city_data: string;
+ private state_data: string;
+ private country_data: string;
+
   title = 'rf';
   constructor(
     private fb: FormBuilder
@@ -21,7 +25,16 @@ export class AppComponent {
     return this.registrationForm.get('password');
   }
 
-  
+  get city(){
+    return this.registrationForm.get('address')
+  }
+
+  getCity(data){
+    console.log("Data from form: " + data.city);
+    this.city_data=data.city;
+    this.state_data=data.state;
+    this.country_data=data.country;
+  }
 
   regex = new RegExp('');
   registrationForm = this.fb.group({
@@ -30,9 +43,9 @@ export class AppComponent {
     Validators.minLength(6)]],
     confirmPassword: [''],
     address: this.fb.group({
-      city: [''],
-      state:[''],
-      country:[''],
+      city: [this.city_data],
+      state:[this.state_data],
+      country:[this.country_data],
       postalCode:['']
     })
   },{validator: PasswordValidator});
