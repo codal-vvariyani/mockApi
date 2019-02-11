@@ -1,10 +1,9 @@
 {
   "posts": [
     {
-      "userId": 1,
-      "id": 3,
-      "title": "asdaDASSDAasdasd",
-      "body": "asdasdASDAD"
+      "title": "abc",
+      "body": "xyz",
+      "id": 3
     },
     {
       "userId": 1,
@@ -119,6 +118,30 @@
       "DOB": "25/05/1998",
       "gender": "Male",
       "cityId": 1
+    },
+    {
+      "firstName": "abcd",
+      "lastName": "wxyz",
+      "email": "abcd@wxyz.com",
+      "phone": 5556665566,
+      "city": "Baroda",
+      "gender": "Male",
+      "dob": "",
+      "country": "India",
+      "state": "Gujarat",
+      "id": 2
+    },
+    {
+      "firstName": "aaaaaaaaaaaaaaaaaaaa",
+      "lastName": "bbbbbbbbbbbbbbbb",
+      "email": "a@b.com",
+      "phone": 5556665566,
+      "city": "Ahmedabad",
+      "gender": "Female",
+      "dob": "1997-06-17",
+      "state": "Gujarat",
+      "country": "India",
+      "id": 3
     }
   ],
   "city": [
@@ -126,6 +149,26 @@
       "id": 1,
       "name": "Ahmedabad",
       "stateId": 1
+    },
+    {
+      "id": 2,
+      "name": "Baroda",
+      "stateId": 1
+    },
+    {
+      "id": 3,
+      "name": "Rajkot",
+      "stateId": 1
+    },
+    {
+      "id": 4,
+      "name": "Mumbai",
+      "stateId": 2
+    },
+    {
+      "id": 5,
+      "name": "Pune",
+      "stateId": 2
     }
   ],
   "state": [
@@ -133,12 +176,36 @@
       "id": 1,
       "name": "Gujarat",
       "countryId": 1
+    },
+    {
+      "id": 2,
+      "name": "Maharashtra",
+      "countryId": 1
+    },
+    {
+      "id": 3,
+      "name": "Rajhasthan",
+      "countryId": 1
+    },
+    {
+      "id": 4,
+      "name": "Karnatak",
+      "countryId": 1
+    },
+    {
+      "id": 5,
+      "name": "Texas",
+      "countryId": 2
     }
   ],
   "country": [
     {
       "id": 1,
       "name": "India"
+    },
+    {
+      "id": 2,
+      "name": "United States"
     }
   ]
 }

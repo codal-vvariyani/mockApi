@@ -14,11 +14,12 @@ import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.componen
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UpdateComponent } from './update/update.component';
 import { ViewComponent } from './view/view.component';
-import { environment } from 'src/environments/environment';
 import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { SharedModuleModule } from './shared-module/shared-module.module';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -40,12 +41,12 @@ import { SharedModuleModule } from './shared-module/shared-module.module';
     MatDialogModule,
     MatIconModule,
     BrowserAnimationsModule,
-    AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     NgbModule,
     NgbPaginationModule,
     NgbAlertModule,
-    SharedModuleModule
+    SharedModuleModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [],
   bootstrap: [AppComponent],

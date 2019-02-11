@@ -6,6 +6,8 @@ export class User {
         public phone: number,
         public city: string,
         public gender: string,
-        public dob: string
-    ){}
+        public dob: string,
+        public country: string,
+        public state: string
+    ) { }
 }

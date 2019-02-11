@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
 import { postResponse } from '../shared/postResponse';
+import { PostService } from '../services/post.service';
 
 @Component({
   selector: 'app-update',
@@ -11,12 +11,12 @@ import { postResponse } from '../shared/postResponse';
 
 export class UpdateComponent implements OnInit {
   private url = 'http://localhost:3000/posts';
-  posts:postResponse[];
+  posts:any;
   strTitle: String;
   strBody: String;
 
   id = +this.route.snapshot.paramMap.get('id');
-  constructor(private http: HttpClient,
+  constructor(private service: PostService,
     private route: ActivatedRoute
   ) { }
 
@@ -26,14 +26,10 @@ export class UpdateComponent implements OnInit {
 
   ////////////FETCH DATA TO BE UPDATED////////////////
   getDataToUpdate(){
-    
     console.log(this.id);
-
-    this.http.get<postResponse[]>(this.url+'/'+this.id)
-  .subscribe(response => {
-    this.posts = response;
-    console.log(this.posts);
-    }); 
+    this.service.getPost(this.id).subscribe(response => {  
+      this.posts = response;
+    });
   }
 
   ///////////UPDATE POST///////////////
@@ -43,9 +39,8 @@ export class UpdateComponent implements OnInit {
       console.log("Title:"+this.strTitle);
       console.log("Body:"+this.strBody);
 
-    this.http.patch(this.url+'/'+this.id, post)
-      .subscribe(response => {
-        console.log(response);
-      });
+    this.service.updatePost(this.id, post).subscribe(response => {
+      console.log(response);
+    });
   }
 }

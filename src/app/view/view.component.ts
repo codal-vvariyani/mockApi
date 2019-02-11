@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { postResponse } from '../shared/postResponse';
+import { PostService } from '../services/post.service';
 
 @Component({
   selector: 'app-view',
@@ -9,11 +9,10 @@ import { postResponse } from '../shared/postResponse';
   styleUrls: ['./view.component.css']
 })
 export class ViewComponent implements OnInit {
-  posts:postResponse[];
-  private url = 'https://jsonplaceholder.typicode.com/posts';
+  posts:any;
   
   constructor(private route: ActivatedRoute,
-    private http: HttpClient) { }
+  private service: PostService) { }
 
   ngOnInit() {
     this.getDataToView();
@@ -23,12 +22,9 @@ export class ViewComponent implements OnInit {
     const id = +this.route.snapshot.paramMap.get('id');
     console.log(id);
     
-    this.http.get<postResponse[]>(this.url+'/'+id)
-  .subscribe(response => {
-    this.posts = response;
-    console.log(this.posts);
-    });
-
+  this.service.getPost(id).subscribe(response => {  
+    this.posts = response;  
+  });
   }
 
 }

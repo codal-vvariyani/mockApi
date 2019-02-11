@@ -1,15 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core'
 import { DialogService } from '../shared/dialog.service';
 import { MatDialog } from '@angular/material';
-
-
-export interface postResponse {
-  body?: string;
-  id?: Number;
-  title?: string;
-  userId?: Number;
-}
+import { PostService } from '../services/post.service';
+import { postResponse } from '../shared/postResponse';
 
 @Component({
   selector: 'app-posts',
@@ -19,35 +12,37 @@ export interface postResponse {
 
 export class PostsComponent implements OnInit {
   posts: postResponse[];
-  
-  private url = 'http://localhost:3000/posts';
 
-  constructor(private http: HttpClient,
+
+  constructor(private service: PostService,
     private dialog: MatDialog,
     private dialogService: DialogService) {
    }
 
 ////////////////CREATE POST///////////////////////
    createPost(input: HTMLInputElement) {
-     let post = {title: input.value};
+     let post = {title: input.value,
+    body: "Exapmle",
+    userId: 2};
+
      input.value = '';
       
-     this.http.post<any>(this.url, post).subscribe(response => {  
-      post['id'] = response.id;
-      this.posts.splice(0, 0, post);  
-      console.log(response);
-    });
+     this.service.createPost(post)  
+      .subscribe(response => {  
+        post['id'] = response['id'];  
+        this.posts.splice(0, 0, post);  
+        console.log(response);  
+      }); 
   }
 
-//////////////GET POST////////////////////////////
-getPost()
+//////////////GET POSTS////////////////////////////
+getPosts()
 {
-  this.http.get<postResponse[]>(this.url)
-  .subscribe(response => {
-    this.posts = response;
-    });
+  this.service.getPosts()  
+      .subscribe(response => {  
+        this.posts = response;  
+      });
 }
-
 
 /////////////DELETE POST//////////////////////////
 deletePost(post) {
@@ -56,18 +51,18 @@ deletePost(post) {
     console.log(response);
     
     if(response){
-      this.http.delete(this.url + '/' + post.id)  
-    .subscribe(response => {  
-      let index = this.posts.indexOf(post);  
-      this.posts.splice(index, 1);  
-    });  
+      this.service.deletePost(post.id)  
+      .subscribe(response => {  
+        let index = this.posts.indexOf(post);  
+        this.posts.splice(index, 1);  
+      });
     }
   });
   
 }  
 
   ngOnInit() {
-    this.getPost();
+    this.getPosts();
   }
 
 }

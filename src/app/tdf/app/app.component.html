@@ -21,10 +21,19 @@
         <input BlockCopyPaste type="email" required #email="ngModel"
         [class.is-invalid]="email.invalid && email.touched" name="email" class="form-control" ngModel email="true" [(ngModel)]="userModel.email">
         <div *ngIf="email.errors && (email.invalid || email.touched)">
-            <small class="text-danger" *ngIf="email.errors.required && email.touched">Email is required</small>
-            <small class="text-danger" *ngIf="email.errors.email && email.touched">Enter valid email address</small>
+          <small class="text-danger" *ngIf="email.errors.required && email.touched">Email is required</small>
+          <small class="text-danger" *ngIf="email.errors.email && email.touched">Enter valid email address</small>
         </div>
     </div>
+
+    <div class="form-group">
+      <label>DOB</label>
+      <input BlockCopyPaste type="date" required #dob="ngModel"
+      [class.is-invalid]="dob.invalid && dob.touched" name="dob" class="form-control" ngModel [(ngModel)]="userModel.dob">
+      <div *ngIf="dob.errors && (dob.invalid || dob.touched)">
+        <small class="text-danger" [class.d-none]="dob.valid || dob.untouched">DOB name is required</small>
+      </div>
+  </div>
     
     <div class="form-group">
         <label>Phone</label>
@@ -37,32 +46,32 @@
     </div>
 
     <div class="form-group">
-        <select (change)="getStates(topic.value)" (blur)="validateTopic(value)" (change)="validateTopic(topic.value)" #topic="ngModel"name="countries" 
-        [class.is-invalid]="topicHasError && topic.touched" class="custom-select" [(ngModel)]="userModel.topic">
+        <select (change)="getStates(country_dd.value)" (blur)="validateDropDown(country_dd.value)" (change)="validateDropDown(country_dd.value)" #country_dd="ngModel" name="countries" 
+        [class.is-invalid]="dropDownHasError && country_dd.touched" class="custom-select" [(ngModel)]="userModel.country">
           <option value="default">Country</option>
           <option *ngFor="let country of countries">{{country.name}}</option>
         </select>
-        <small class="text-danger" [class.d-none]="!topicHasError || topic.untouched">Please select a country</small>
-      </div>
+        <small class="text-danger" [class.d-none]="!dropDownHasError || country_dd.untouched">Please select a country</small>
+    </div>
 
-      <!-- <div class="form-group">
-        <select (blur)="validateTopic(topic.value)" (change)="validateTopic(topic.value)" #topic="ngModel"name="topics" 
-        [class.is-invalid]="topicHasError && topic.touched" class="custom-select" [(ngModel)]="userModel.topic">
-          <option value="default">State</option>
-          <option *ngFor="let country  of countries">{{country}}</option>
-        </select>
-        <small class="text-danger" [class.d-none]="!topicHasError || topic.untouched">Please select a topic</small>
-      </div>
+    <div class="form-group">
+      <select (change)="getCities(state_dd.value)" (blur)="validateDropDown(state_dd.value)" (change)="validateDropDown(state_dd.value)" #state_dd="ngModel" name="states" 
+      [class.is-invalid]="dropDownHasError && state_dd.touched" class="custom-select" [(ngModel)]="userModel.state">
+        <option value="default">State</option>
+        <option *ngFor="let state of states">{{state.name}}</option>
+      </select>
+      <small class="text-danger" [class.d-none]="!dropDownHasError || state_dd.untouched">Please select a state</small>
+  </div>
 
-      <div class="form-group">
-        <select (blur)="validateTopic(topic.value)" (change)="validateTopic(topic.value)" #topic="ngModel"name="topics" 
-        [class.is-invalid]="topicHasError && topic.touched" class="custom-select" [(ngModel)]="userModel.topic">
-          <option value="default">City</option>
-          <option *ngFor="let topic  of topics">{{topic}}</option>
-        </select>
-        <small class="text-danger" [class.d-none]="!topicHasError || topic.untouched">Please select a topic</small>
-      </div> -->
-    
+  <div class="form-group">
+    <select (blur)="validateDropDown(city_dd.value)" (change)="validateDropDown(city_dd.value)" #city_dd="ngModel" name="cities" 
+    [class.is-invalid]="dropDownHasError && city_dd.touched" class="custom-select" [(ngModel)]="userModel.city">
+      <option value="default">City</option>
+      <option *ngFor="let city of cities">{{city.name}}</option>
+    </select>
+    <small class="text-danger" [class.d-none]="!dropDownHasError || city_dd.untouched">Please select a city</small>
+  </div>
+
       <div class="mb-3">
           <label>Gender</label>
           <div class="form-check">
@@ -75,6 +84,6 @@
             </div>
       </div>
 
-      <button [disabled]="userForm.form.invalid || topicHasError" class="btn btn-primary" type="submit">Submit form</button>
+      <button (click)="submitData()" [disabled]="userForm.form.invalid || dropDownHasError" class="btn btn-primary" type="submit">Submit form</button>
   </form>
 </div>
