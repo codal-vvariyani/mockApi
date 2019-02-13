@@ -8,7 +8,7 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 
 ## Run Json Server
 
-Run ng run json:server to run json server to enable local REST API.
+Navigate to directory JsonServer 'cd JsonServer'. Run 'npm run json:server' to run json server to enable local REST API.
 
 ## Code scaffolding
 
