@@ -9,6 +9,7 @@ const routes: Routes = [
   { path:'tdf', loadChildren:'./tdf/tdf.module#TdfModule'},
   { path:'rf', loadChildren:'./rf/rf.module#RfModule'},
   { path: '', redirectTo:'/home', pathMatch: 'full' },
+  { path: 'index', redirectTo:'/home', pathMatch: 'full' },
   { path: 'posts', component: PostsComponent, }, 
   { path: 'home', component: HomeComponent, },
   { path: 'update/:id', component: UpdateComponent},
